@@ -1,0 +1,19 @@
+# Isopotify configuration — copy to ~/.config/isopotify/config.toml and edit.
+# CLI flags override anything set here. (A config.json with the same keys works
+# too, if you don't have a TOML parser.)
+
+output_dir       = "~/Music/Isopotify"
+media_format     = "mp3"          # "mp3" or "wav"
+bitrate          = 320            # kbps, MP3 only
+separator        = " "            # whitespace replacement in file names (e.g. "_")
+group_by_folder  = false          # true → Artist/Album/ sub-folders
+min_length       = 30             # drop recordings shorter than this many seconds
+on_exists        = "skip"         # "skip" | "overwrite" | "duplicate"
+record_ads       = false          # true → keep ad segments
+
+# Cancel-on-skip: drop a track you skipped before it (nearly) finished.
+keep_skipped     = false          # true → disable the feature (keep partials)
+skip_tolerance   = 5.0            # seconds of slack before a track counts as "skipped"
+
+listen           = true           # also route audio to your speakers while recording
+verbose          = false

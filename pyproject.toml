@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "isopotify"
+version = "0.1.0"
+description = "A Linux Spotify recorder (MPRIS + PipeWire/PulseAudio)."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Charles" }]
+keywords = ["spotify", "recorder", "mpris", "pipewire", "pulseaudio", "linux"]
+
+dependencies = [
+    "mutagen>=1.45",             # ID3 / WAV tagging
+    "requests>=2.25",            # cover-art fetch, optional Last.fm
+    "tomli>=1.1; python_version < '3.11'",  # read config.toml before stdlib tomllib
+]
+
+[project.optional-dependencies]
+# MPRIS uses PyGObject (gi). On Arch/Manjaro this is usually the system package
+# `python-gobject`; the extra is here for pip-based environments.
+mpris = ["PyGObject>=3.40"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+isopotify = "isopotify.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["isopotify*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
